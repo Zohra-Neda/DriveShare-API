@@ -4,6 +4,8 @@ class CarsController < ApplicationController
   # GET /cars or /cars.json
   def index
     @cars = Car.all
+
+    render json: @cars
   end
 
   # GET /cars/1 or /cars/1.json
@@ -20,15 +22,11 @@ class CarsController < ApplicationController
   # POST /cars or /cars.json
   def create
     @car = Car.new(car_params)
-
-    respond_to do |format|
-      if @car.save
-        format.html { redirect_to car_url(@car), notice: 'Car was successfully created.' }
-        format.json { render :show, status: :created, location: @car }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @car.errors, status: :unprocessable_entity }
-      end
+    # @car.user_id(current_user.id)
+    if @car.save
+      render json: @car, status: :created, location: @car
+    else
+      render json: @car.errors, status: :unprocessable_entity
     end
   end
 
@@ -64,6 +62,6 @@ class CarsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def car_params
-    params.require(:car).permit(:name, :image, :description, :available)
+    params.require(:car).permit(:name, :image, :description, :available, :city_id, :user_id)
   end
 end

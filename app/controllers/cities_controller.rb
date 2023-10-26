@@ -4,6 +4,8 @@ class CitiesController < ApplicationController
   # GET /cities or /cities.json
   def index
     @cities = City.all
+
+    render json: @cities
   end
 
   # GET /cities/1 or /cities/1.json
@@ -20,15 +22,10 @@ class CitiesController < ApplicationController
   # POST /cities or /cities.json
   def create
     @city = City.new(city_params)
-
-    respond_to do |format|
-      if @city.save
-        format.html { redirect_to city_url(@city), notice: 'City was successfully created.' }
-        format.json { render :show, status: :created, location: @city }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @city.errors, status: :unprocessable_entity }
-      end
+    if @city.save
+      render json: @city, status: :created, location: @city
+    else
+      render json: @city.errors, status: :unprocessable_entity
     end
   end
 
