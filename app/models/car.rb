@@ -3,6 +3,8 @@ class Car < ApplicationRecord
   validates :image, presence: true
   validates :description, presence: true
   validates :available, presence: true
+  validates :price, presence: true
+  validates :model, presence: true
 
   belongs_to :user
   belongs_to :city
