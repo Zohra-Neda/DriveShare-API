@@ -3,7 +3,7 @@ class ReservationsController < ApplicationController
 
   # GET /reservations or /reservations.json
   def index
-    @reservations = Reservation.all
+    @reservations = Reservation.where(user_id: params[:user_id])
 
     render json: @reservations
   end
