@@ -18,7 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_02_122727) do
     t.string "name"
     t.string "image"
     t.string "description"
-    t.boolean "available"
+    t.boolean "available", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "city_id", null: false
