@@ -21,8 +21,11 @@ class ReservationsController < ApplicationController
 
   # POST /reservations or /reservations.json
   def create
+    puts reservation_params
     @reservation = Reservation.new(reservation_params)
     if @reservation.save
+      @car = @reservation.car
+      @car.update(available: false)
       render json: @reservation, status: :created, location: @reservation
     else
       render json: @reservation.errors, status: :unprocessable_entity
@@ -30,17 +33,17 @@ class ReservationsController < ApplicationController
   end
 
   # PATCH/PUT /reservations/1 or /reservations/1.json
-  def update
-    respond_to do |format|
-      if @reservation.update(reservation_params)
-        format.html { redirect_to reservation_url(@reservation), notice: 'Reservation was successfully updated.' }
-        format.json { render :show, status: :ok, location: @reservation }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @reservation.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def update
+  #   respond_to do |format|
+  #     if @reservation.update(reservation_params)
+  #       format.html { redirect_to reservation_url(@reservation), notice: 'Reservation was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: @reservation }
+  #     else
+  #       format.html { render :edit, status: :unprocessable_entity }
+  #       format.json { render json: @reservation.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /reservations/1 or /reservations/1.json
   def destroy

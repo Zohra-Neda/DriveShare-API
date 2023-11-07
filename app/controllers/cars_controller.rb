@@ -8,17 +8,6 @@ class CarsController < ApplicationController
     render json: @cars
   end
 
-  # GET /cars/1 or /cars/1.json
-  def show; end
-
-  # GET /cars/new
-  def new
-    @car = Car.new
-  end
-
-  # GET /cars/1/edit
-  def edit; end
-
   # POST /cars or /cars.json
   def create
     @car = Car.new(car_params)
@@ -30,27 +19,11 @@ class CarsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /cars/1 or /cars/1.json
-  def update
-    respond_to do |format|
-      if @car.update(car_params)
-        format.html { redirect_to car_url(@car), notice: 'Car was successfully updated.' }
-        format.json { render :show, status: :ok, location: @car }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @car.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # DELETE /cars/1 or /cars/1.json
   def destroy
     @car.destroy
 
-    respond_to do |format|
-      format.html { redirect_to cars_url, notice: 'Car was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    render json: { message: 'Car was successfully destroyed.' }
   end
 
   private

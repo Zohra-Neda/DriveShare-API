@@ -4,7 +4,7 @@ class CreateCars < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :image
       t.string :description
-      t.boolean :available
+      t.boolean :available, default: true
 
       t.timestamps
     end
