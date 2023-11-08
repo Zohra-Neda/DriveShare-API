@@ -3,6 +3,6 @@ class Reservation < ApplicationRecord
   validates :end_date, presence: true
 
   belongs_to :user
-  belongs_to :car, dependent: :destroy
+  belongs_to :car
   belongs_to :city
 end
