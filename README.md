@@ -137,7 +137,7 @@ Install this project with:
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the <a href="https://github.com/zohra-neda/driveshare-front-end/issues">issues page</a>
+Feel free to check the <a href="https://github.com/zohra-neda/driveshare-back-end/issues">issues page</a>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
