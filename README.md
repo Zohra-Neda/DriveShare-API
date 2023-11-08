@@ -52,6 +52,10 @@ DriveShare is a Full-stack web application. that makes easier to Add, reserve an
 [Link](https://github.com/Zohra-Neda/DriveShare-Front-End)
 
 
+### Live Demo <a name="key-features"></a>
+[Link](https://drive-share-app-frontend.onrender.com)
+
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Link to Kanban Board <a name="key-features"></a>
@@ -97,11 +101,12 @@ Install this project with:
 ### Usage
 > To run the project, execute the following command:
 ```sh
-   ./bin/dev
+   bundle install
+   rails db:create
+   rails db:migrate
+   rails db:seed
+   rails s
 ```
-
-## 👥 Authors <a name="authors"></a>
-
 
 <!-- AUTHORS -->
 

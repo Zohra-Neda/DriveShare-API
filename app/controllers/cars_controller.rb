@@ -21,9 +21,13 @@ class CarsController < ApplicationController
 
   # DELETE /cars/1 or /cars/1.json
   def destroy
-    @car.destroy
-
-    render json: { message: 'Car was successfully destroyed.' }
+    @reservation = @car.reservation
+    @reservation.destroy
+    if @car.destroy
+      render json: { message: 'Car was successfully destroyed.' }
+    else
+      render json: @car.errors, status: :unprocessable_entity
+    end
   end
 
   private
