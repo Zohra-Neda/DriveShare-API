@@ -1,0 +1,336 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/cars":
+    get:
+      summary: Get a list of cars
+      tags:
+      - Cars
+      responses:
+        '200':
+          description: List of cars
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    image:
+                      type: string
+                    description:
+                      type: string
+                    available:
+                      type: boolean
+                    city_id:
+                      type: integer
+                    user_id:
+                      type: integer
+                    price:
+                      type: number
+                    model:
+                      type: string
+                  required:
+                  - id
+                  - name
+                  - image
+                  - description
+                  - available
+                  - city_id
+                  - user_id
+                  - price
+                  - model
+    post:
+      summary: Create a car
+      tags:
+      - Cars
+      parameters: []
+      responses:
+        '201':
+          description: Car created
+        '422':
+          description: Unprocessable Entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                image:
+                  type: string
+                description:
+                  type: string
+                available:
+                  type: boolean
+                city_id:
+                  type: integer
+                user_id:
+                  type: integer
+                price:
+                  type: number
+                model:
+                  type: string
+              required:
+              - name
+              - image
+              - description
+              - available
+              - city_id
+              - user_id
+              - price
+              - model
+  "/cars/{id}":
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: Get a car by ID
+      tags:
+      - Cars
+      responses:
+        '200':
+          description: Car details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  image:
+                    type: string
+                  description:
+                    type: string
+                  available:
+                    type: boolean
+                  city_id:
+                    type: integer
+                  user_id:
+                    type: integer
+                  price:
+                    type: number
+                  model:
+                    type: string
+    put:
+      summary: Update a car by ID
+      tags:
+      - Cars
+      parameters: []
+      responses:
+        '200':
+          description: Car updated
+        '422':
+          description: Unprocessable Entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                image:
+                  type: string
+                description:
+                  type: string
+                available:
+                  type: boolean
+                city_id:
+                  type: integer
+                user_id:
+                  type: integer
+                price:
+                  type: number
+                model:
+                  type: string
+              required:
+              - name
+              - image
+              - description
+              - available
+              - city_id
+              - user_id
+              - price
+              - model
+  "/reservations":
+    get:
+      summary: Get a list of reservations
+      tags:
+      - Reservations
+      parameters:
+      - name: user_id
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: List of reservations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    start_date:
+                      type: string
+                      format: date
+                    end_date:
+                      type: string
+                      format: date
+                    city_id:
+                      type: integer
+                    car_id:
+                      type: integer
+                    user_id:
+                      type: integer
+                  required:
+                  - id
+                  - start_date
+                  - end_date
+                  - city_id
+                  - car_id
+                  - user_id
+    post:
+      summary: Create a reservation
+      tags:
+      - Reservations
+      parameters: []
+      responses:
+        '201':
+          description: Reservation created
+        '422':
+          description: Unprocessable Entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start_date:
+                  type: string
+                  format: date
+                end_date:
+                  type: string
+                  format: date
+                city_id:
+                  type: integer
+                car_id:
+                  type: integer
+                user_id:
+                  type: integer
+              required:
+              - start_date
+              - end_date
+              - city_id
+              - car_id
+              - user_id
+  "/reservations/{id}":
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: Get a reservation by ID
+      tags:
+      - Reservations
+      responses:
+        '200':
+          description: Reservation details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  start_date:
+                    type: string
+                    format: date
+                  end_date:
+                    type: string
+                    format: date
+                  city_id:
+                    type: integer
+                  car_id:
+                    type: integer
+                  user_id:
+                    type: integer
+    put:
+      summary: Update a reservation by ID
+      tags:
+      - Reservations
+      parameters: []
+      responses:
+        '200':
+          description: Reservation updated
+        '422':
+          description: Unprocessable Entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start_date:
+                  type: string
+                  format: date
+                end_date:
+                  type: string
+                  format: date
+                city_id:
+                  type: integer
+                car_id:
+                  type: integer
+                user_id:
+                  type: integer
+              required:
+              - start_date
+              - end_date
+              - city_id
+              - car_id
+              - user_id
+  "/users":
+    post:
+      summary: Create a user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '201':
+          description: User created
+        '422':
+          description: Unprocessable Entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3000
